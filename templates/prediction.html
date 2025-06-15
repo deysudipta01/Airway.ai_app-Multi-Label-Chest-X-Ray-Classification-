@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/prediction.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}" type="image/x-icon">
+    <title>Prediction</title>
+</head>
+    <body>
+        <header class="min-vh-1">
+            <img href="" class="logo" src="static/img/favicon.png" alt="logo" />
+
+            <nav class="navbar navbar-expand-lg fixed-top bg-white bg-opacity-75">
+                <div class="container">
+
+                    <a class="nav-link active" aria-current="page" href="/index2">Home</a>
+
+                  <div class="navbar-collapse" >
+
+
+                      {% if user %}
+                        <div class="d-flex align-items-center ms-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 24 24"
+                             fill="currentColor"
+                             width="30"
+                             height="30"
+                             color="white">
+                        <path d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12.1597 16C10.1243 16 8.29182 16.8687 7.01276 18.2556C8.38039 19.3474 10.114 20 12 20C13.9695 20 15.7727 19.2883 17.1666 18.1081C15.8956 16.8074 14.1219 16 12.1597 16ZM12 4C7.58172 4 4 7.58172 4 12C4 13.8106 4.6015 15.4807 5.61557 16.8214C7.25639 15.0841 9.58144 14 12.1597 14C14.6441 14 16.8933 15.0066 18.5218 16.6342C19.4526 15.3267 20 13.7273 20 12C20 7.58172 16.4183 4 12 4ZM12 5C14.2091 5 16 6.79086 16 9C16 11.2091 14.2091 13 12 13C9.79086 13 8 11.2091 8 9C8 6.79086 9.79086 5 12 5ZM12 7C10.8954 7 10 7.89543 10 9C10 10.1046 10.8954 11 12 11C13.1046 11 14 10.1046 14 9C14 7.89543 13.1046 7 12 7Z"></path>
+                        </svg>
+                          <span class="fw-bold text-white me-2">{{ user.fullname }}/</span>
+                          <span class="fw-bold text-white me-2">{{ user.phone }}</span>
+                          <a href="/logout" class="btn btn-sm btn-outline-danger ms-3">Logout</a>
+                        </div>
+                      {% else %}
+                        <a href="/login" class="btn btn-sm btn-outline-primary ms-auto">Login</a>
+                      {% endif %}
+
+                  </div>
+                </div>
+            </nav>
+
+            </div>
+        </header>
+
+        <main>
+
+            <div class="carousel-item active">
+        <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+          <div class="p-3" style="max-width:900px;">
+            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Keep Your lungs Healthy</h5>
+            <h1 class="display-1 text-white mb-md-4 animated zoomIn">Upload your Chest xray img jpg/png</h1>
+            <!-- Upload form -->
+                <form action="{{ url_for('prediction') }}" method="POST" enctype="multipart/form-data" class="d-flex flex-column align-items-center gap-3">
+
+                  <!-- Custom File Upload -->
+                  <label for="image-upload" class="custom-file-upload">
+                    📁 Choose Image
+                  </label>
+                  <input type="file" name="image" id="image-upload" accept="image/*" required>
+
+                  <!-- Submit Button -->
+                  <button type="submit" class="btn btn-primary py-md-3 px-md-5 animated slideInLeft">
+                    Upload & Predict
+                  </button>
+
+                </form>
+
+          </div>
+        </div>
+
+                <div class="prediction">
+
+          {% if top_diseases %}
+                <div class="heading">Top Predicted Diseases</div>
+              <div class="list">
+                <ul class="list-group">
+                  {% for disease, prob in top_diseases %}
+                    <li class="list-group-item">
+                      <div class="d-flex justify-content-between">
+                        <strong>{{ disease }}</strong>
+                        <span>{{ '%.2f' % (prob * 100) }}%</span>
+                      </div>
+                      <div class="progress" style="height: 10px;">
+                        <div
+                          class="progress-bar
+                            {% if prob >= 0.7 %}
+                              bg-danger
+                            {% elif prob >= 0.4 %}
+                              bg-warning
+                            {% else %}
+                              bg-success
+                            {% endif %}"
+                          role="progressbar"
+                          style="width: {{ prob * 100 }}%;"
+                          aria-valuenow="{{ prob * 100 }}"
+                          aria-valuemin="0"
+                          aria-valuemax="100">
+                        </div>
+                      </div>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+
+
+
+                <div class="heading">Grad-CAM Visualizations</div>
+                    <div class="list2">
+                      <div class="gradcam-container">
+                        {% for img, label, prob in gradcams %}
+                          <div class="gradcam-card">
+                            <img src="data:image/png;base64,{{ img | to_b64 }}" width="224" height="224"><br>
+                              <strong>{{ label }}</strong>: <h1>{{ '%.2f' % (prob * 100) }}%</h1>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                <div class="d-flex justify-content-center gap-3 mt-4">
+                  <a href="/appointment" class="btn btn-primary px-4 py-2">Make Appointment</a>
+                  <a href="/generate-report"  class="btn btn-success px-4 py-2">Download Report</a>
+                </div>
+                {% endif %}
+
+              </div>
+            </div>
+
+
+        </main>
+
+
+
+
+
+
+              <footer class="bg-goy">
+    <div class="container">
+        <div class="row py-4 jus d-flex justify-content-center">
+             <img class="logofooter" src="static/img/favicon.png" alt="logo" />
+            <div class="col-md-5 text-white">
+                <h5>Airway.ai</h5>
+
+                <!-- Logo Image -->
+
+
+                <p>Airway.ai is a cutting-edge platform that leverages artificial intelligence
+                    to assist individuals in identifying potential health conditions from medical images,
+                    specifically chest X-rays. By allowing users to upload their X-ray images, the website uses
+                    advanced deep learning models to predict the presence of various diseases, offering an insightful
+                    diagnosis based on the analysis. The platform provides a quick, reliable, and user-friendly
+                    interface, helping users gain a better understanding of their health conditions with accurate
+                    disease predictions and brief descriptions of the identified conditions. It’s designed to make
+                    healthcare more accessible and provide timely support for individuals seeking initial guidance
+                    on their health.</p>
+            </div>
+
+            <div class="col-md-3 text-white">
+                <h5>Kolkata</h5>
+                <p>Park street <br>kol 15</p>
+                <p>+91 9830531837 <br> airway.ai@google.com</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    </body>
+</html>

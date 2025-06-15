@@ -1,0 +1,273 @@
+
+
+.varify {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .varify .div {
+    background-color: #ffffff;
+    width: 443px;
+    height: 926px;
+    position: relative;
+  }
+  
+  .varify .text-wrapper {
+    position: absolute;
+    top: 126px;
+    left: 38px;
+    font-family: "Inter", Helvetica;
+    font-weight: 700;
+    color: #313131;
+    font-size: 22px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .varify .p {
+    position: absolute;
+    width: 300px;
+    top: 168px;
+    left: 38px;
+    font-family: "Poppins", Helvetica;
+    font-weight: 500;
+    color: #b5b5b5;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+
+  .varify .p1{
+    position: absolute;
+    width: 300px;
+        top: 258px;
+    left: 38px;
+    font-family: "Poppins", Helvetica;
+    font-weight: 500;
+    color: #b5b5b5;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+
+  .varify .p2{
+    position: absolute;
+    width: 300px;
+    top: 280px;
+    left: 77px;
+    font-family: "Poppins", Helvetica;
+    font-weight: 500;
+    color: #b5b5b5;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .varify .overlap {
+    position: absolute;
+    width: 71px;
+    height: 71px;
+    top: 271px;
+    left: 38px;
+    border-radius: 20px;
+    border: 1.6px solid;
+    border-color: #dddddd;
+  }
+  
+  .varify .text-wrapper-2 {
+    top: 18px;
+    left: 25px;
+    position: absolute;
+    font-family: "Inter", Helvetica;
+    font-weight: 700;
+    color: #757575;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .varify .overlap-group {
+    position: absolute;
+    width: 71px;
+    height: 71px;
+    top: 271px;
+    left: 137px;
+    border-radius: 20px;
+    border: 1.6px solid;
+    border-color: #dddddd;
+  }
+  
+  .varify .div-wrapper {
+    position: absolute;
+    width: 71px;
+    height: 71px;
+    top: 271px;
+    left: 236px;
+    border-radius: 20px;
+  }
+  
+  .varify .text-wrapper-3 {
+    top: 20px;
+    left: 27px;
+    position: absolute;
+    font-family: "Inter", Helvetica;
+    font-weight: 700;
+    color: #757575;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .varify .rectangle {
+    position: absolute;
+    width: 71px;
+    height: 71px;
+    top: 271px;
+    left: 335px;
+    border-radius: 20px;
+    border: 1.4px solid;
+    border-color: #dddddd;
+  }
+  
+  .varify .group {
+    position: absolute;
+    width: 369px;
+    height: 72px;
+    top: 398px;
+    left: 38px;
+  }
+  
+  .varify .overlap-group-2 {
+    position: relative;
+    width: 367px;
+    height: 50px;
+    background: linear-gradient(180deg, #ff8c4c 0%, #ff5a1f 100%);
+    border-radius: 50px;
+    box-shadow: 0px 9px 14px rgba(255, 140, 76, 0.2);
+    display: flex
+;
+    margin-left: -15px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+  
+  .varify .text-wrapper-4 {
+    font-family: "Poppins", Helvetica;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .varify .overlap-wrapper {
+    position: absolute;
+    width: 19px;
+    height: 14px;
+    top: 52px;
+    left: 39px;
+  }
+  
+  .varify .overlap-2 {
+    position: relative;
+    width: 21px;
+    height: 16px;
+    top: -1px;
+    left: -1px;
+  }
+  
+  .varify .line {
+    width: 21px;
+    height: 2px;
+    top: 7px;
+    position: absolute;
+    left: 0;
+  }
+  
+  .varify .img {
+    width: 9px;
+    height: 9px;
+    top: 0;
+    position: absolute;
+    left: 0;
+  }
+  
+  .varify .line-2 {
+    width: 9px;
+    height: 9px;
+    top: 7px;
+    position: absolute;
+    left: 0;
+  }
+  .code-box {
+    width: 40px;
+    height: 50px;
+    font-size: 24px;
+    text-align: center;
+    margin: 0 5px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+  }
+  .code-box:focus {
+    border-color: #007BFF;
+    outline: none;
+  }
+  .code-inputs {
+    margin: 45px;
+    margin-top: 20rem;
+}
+
+  @media (max-width: 768px) {
+
+  .code-inputs {
+    margin: 45px;
+    margin-top: 20rem;
+    margin-left: 6rem;
+}
+.varify .p1 {
+
+    top: 258px;
+    left: 85px;
+
+}
+.varify .p2 {
+    position: absolute;
+    width: 300px;
+    top: 280px;
+    left: 8rem;
+    font-family: "Poppins", Helvetica;
+    font-weight: 500;
+    color: #b5b5b5;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+.varify .p {
+    position: absolute;
+    width: 300px;
+    top: 168px;
+    left: 4rem;
+    font-family: "Poppins", Helvetica;
+    font-weight: 500;
+    color: #b5b5b5;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+.varify .text-wrapper {
+    position: absolute;
+    top: 126px;
+    left: 95px;
+    font-family: "Inter", Helvetica;
+    font-weight: 700;
+    color: #313131;
+    font-size: 22px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+  }

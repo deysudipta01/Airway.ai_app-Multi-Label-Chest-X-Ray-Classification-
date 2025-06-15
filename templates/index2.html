@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}" type="image/x-icon">
+    <title>Airway.ai</title>
+    <style>
+
+       .slider {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    padding: 20px;
+    border-color:blue;
+    width: 100% !important;
+    margin: auto;
+  }
+
+  .slider::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  .slider img {
+    flex: 0 0 auto;
+    width: 500px;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .feat{
+
+  font-size: 60px;
+    text-align: center;
+    font-weight: 500;
+  }
+    </style>
+</head>
+    <body>
+        <header class="min-vh-100">
+             <img class="logo" src="static/img/favicon.png" alt="logo" />
+             <nav class="navbar navbar-expand-lg fixed-top bg-white bg-opacity-75">
+                <div class="container">
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                    <a class="navbar-brand" href="#">
+
+                    </a>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/index2">Home</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#about">About us</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#service">Services</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#maker">Feedback</a>
+                      </li>
+
+                      <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                      </li>
+                    </ul>
+
+                      {% if user %}
+                        <div class="d-flex align-items-center ms-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 24 24"
+                             fill="currentColor"
+                             width="30"
+                             height="30"
+                             color="white">
+                        <path d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12.1597 16C10.1243 16 8.29182 16.8687 7.01276 18.2556C8.38039 19.3474 10.114 20 12 20C13.9695 20 15.7727 19.2883 17.1666 18.1081C15.8956 16.8074 14.1219 16 12.1597 16ZM12 4C7.58172 4 4 7.58172 4 12C4 13.8106 4.6015 15.4807 5.61557 16.8214C7.25639 15.0841 9.58144 14 12.1597 14C14.6441 14 16.8933 15.0066 18.5218 16.6342C19.4526 15.3267 20 13.7273 20 12C20 7.58172 16.4183 4 12 4ZM12 5C14.2091 5 16 6.79086 16 9C16 11.2091 14.2091 13 12 13C9.79086 13 8 11.2091 8 9C8 6.79086 9.79086 5 12 5ZM12 7C10.8954 7 10 7.89543 10 9C10 10.1046 10.8954 11 12 11C13.1046 11 14 10.1046 14 9C14 7.89543 13.1046 7 12 7Z"></path>
+                        </svg>
+
+                          <span class="fw-bold text-white me-2">{{ user.fullname }}/</span>
+                          <span class="text-white small">{{ user.phone }}</span>
+                          <a href="/logout" class="btn btn-sm btn-outline-danger ms-3">Logout</a>
+                        </div>
+                      {% else %}
+                        <a href="/login" class="btn btn-sm btn-outline-primary ms-auto">Login</a>
+                      {% endif %}
+
+                  </div>
+                </div>
+            </nav>
+
+
+
+            <div class="container vh-100 d-flex align-items-center justify-content-center">
+                <div class="row w-100">
+                    <div class="card col-lg-6 bg-transparent border-0 text-white" >
+                        <div class="card-body">
+                            <h1 class="card-title display-3">Breathe Easy <br>  <b>Let AI Do the Checkup!</b></h1>
+
+                             <p> <span class="typing-text"></span></p>
+                            <button  class="btn btn-info bg-mavi text-white rounded-0 text-uppercase" type="submit"><a href="/prediction">Ai Scan Now</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="py-5">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 ">
+                            <div class="card bg-transparent border-0" >
+                                <div id="about" class="card-body">
+                                    <h2 class="card-subtitle mb-2">Why you should choose us?</h2>
+                                    <h5 class="card-subtitle mb-2">One X-ray. One click. One life saved</h5>
+                                    <p class="card-text my-4">We’re redefining how the world sees chest disease—literally.
+                                    At the intersection of AI and compassion, our platform transforms ordinary chest X-rays into powerful diagnostic tools. Whether it's pneumonia, tuberculosis, or hidden lung conditions, our intelligent system detects it in seconds—because when it comes to health, every second matters.
+
+                                    In a world where millions lack access to expert radiologists, our mission is bold but simple:
+                                    Make early detection effortless, accurate, and available—anywhere.
+
+                                    This isn’t just innovation.
+                                    It’s life-saving intelligence, designed for the people who need it most.
+
+                                    Smarter diagnostics. Stronger outcomes. A healthier future.</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <img src="static/img/hekimbaba.jpg" class="mw-100" alt="Hekim baba" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="service" class="bg-white">
+                <div class="container">
+
+                <h6 class="feat">Features</h6>
+                <div class="slider" id="slider">
+                <img src="/static/img/f1.jpg" alt="Image 1" />
+                <img src="/static/img/f2.jpeg" alt="Image 2" />
+                <img src="/static/img/f3.jpeg" alt="Image 3" />
+                <img src="/static/img/f4.jpeg" alt="Image 4" />
+                <img src="/static/img/f5.jpeg" alt="Image 5" />
+                    <img src="/static/img/f6.jpeg" alt="Image 6" />
+
+                </div>
+
+            </div>
+            <div id="maker" class="bg-mavi py-5">
+                <div class="container">
+                    <div class="col d-flex flex-column">
+                        <div class="d-flex justify-content-center mb-5">
+                            <div class="card-body text-center text-white w-50 d-flex flex-column">
+                                <h1 class="card-title">Feedback</h1>
+                                <p class="card-text">
+                                    What People Are Saying
+Real stories. Real impact.
+
+We believe technology is only as powerful as the lives it touches. From doctors in fast-paced hospitals to health workers in remote villages, and patients seeking clarity—our users share how AI-powered diagnosis is making healthcare faster, smarter, and more accessible. Here's what they have to say.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active bt1" aria-current="true" aria-label="Slide 1"></button>
+                              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" class="bt2" aria-label="Slide 2"></button>
+                              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" class="bt3" aria-label="Slide 3"></button>
+                              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" class="bt4" aria-label="Slide 4"></button>
+                              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" class="bt5" aria-label="Slide 5"></button>
+                            </div>
+                            <div class="carousel-inner">
+                              <div class="carousel-item active">
+                                <div class="carousel-caption d-flex flex-column py-3 d-md-block py-md-5">
+                                    <h6>Dr. Meera R</h6>
+                                    <p>Pulmonologist</p>
+                                    <p>"The AI system identified subtle patterns even I almost missed. It’s a fantastic second opinion—fast, accurate, and incredibly helpful in emergencies."
+</p>
+
+                                </div>
+                              </div>
+                              <div class="carousel-item">
+                                <div class="carousel-caption d-flex flex-column py-3 d-md-block py-md-5">
+                                    <h6>Rajeev S., </h6>
+                                    <p>Clinic Administrator</p>
+                                    <p>""The auto-generated PDF reports have streamlined our workflow. We can now handle more patients in less time without compromising quality."</p>
+                                </div>
+                              </div>
+                              <div class="carousel-item">
+                                <div class="carousel-caption d-flex flex-column py-3 d-md-block py-md-5">
+                                    <h6>Amina B</h6>
+                                    <p>Rural Health Worker</p>
+                                    <p>"This tool has been a game changer for our remote clinic. I can screen patients and consult specialists without delay—just using my phone."</p>
+                                </div>
+                              </div>
+                              <div class="carousel-item">
+                                <div class="carousel-caption d-flex flex-column py-3 d-md-block py-md-5">
+                                    <h6>Anil K</h6>
+                                    <p>Medical Student</p>
+                                    <p>"The Grad-CAM heatmaps helped me understand exactly what to look for in an X-ray. It’s like having a digital mentor on every case."</p>
+                                </div>
+                              </div>
+                              <div class="carousel-item">
+                                <div class="carousel-caption d-flex flex-column py-3 d-md-block py-md-5">
+                                    <h6>Mahesh P</h6>
+                                    <p>Patient</p>
+                                    <p>"The transparency of the AI’s decision-making through heatmaps is impressive. It builds trust and adds a layer of accountability."
+</p>
+                                </div>
+                              </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="py-5">
+                <div class="container">
+                    <div  class="row justify-content-center">
+
+                        <h1  id="contact" class="contact">Contact Us</h1>
+                      <div class="col-md-4">
+                        <div class="mb-3">
+                          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Name">
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="E-mail">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Subject">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Your Message"></textarea>
+                        </div>
+                        <div class="col d-flex justify-content-center">
+                            <button type="button" class="btn btn-outline-primary">Submit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </main>
+
+      <footer class="bg-goy">
+    <div class="container">
+        <div class="row py-4 jus d-flex justify-content-center">
+             <img class="logofooter" src="static/img/favicon.png" alt="logo" />
+            <div class="col-md-5 text-white">
+                <h5>Airway.ai</h5>
+
+                <!-- Logo Image -->
+
+
+                <p>Airway.ai is a cutting-edge platform that leverages artificial intelligence
+                    to assist individuals in identifying potential health conditions from medical images,
+                    specifically chest X-rays. By allowing users to upload their X-ray images, the website uses
+                    advanced deep learning models to predict the presence of various diseases, offering an insightful
+                    diagnosis based on the analysis. The platform provides a quick, reliable, and user-friendly
+                    interface, helping users gain a better understanding of their health conditions with accurate
+                    disease predictions and brief descriptions of the identified conditions. It’s designed to make
+                    healthcare more accessible and provide timely support for individuals seeking initial guidance
+                    on their health.</p>
+            </div>
+
+            <div class="col-md-3 text-white">
+                <h5>Kolkata</h5>
+                <p>Park street <br>kol 15</p>
+                <p>+91 9830531837 <br> airway.ai@google.com</p>
+            </div>
+        </div>
+    </div>
+        </footer>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+           <style>
+
+  </style>
+
+    <script>
+    // Typed.js effect
+    var typed = new Typed(".typing-text", {
+      strings: [
+        "Upload Your X-ray — Let AI Do the Diagnosis!",
+        "Pneumonia, Tuberculosis, and More — Diagnosed in Seconds!",
+        "Fast, Reliable, and Accurate Predictions...",
+
+      ],
+      loop: true,
+      typeSpeed: 50,
+      backSpeed: 25,
+      backDelay: 500,
+    });
+
+  </script>
+
+    <script>
+const slider = document.getElementById("slider");
+
+// Clone slider content for seamless looping
+slider.innerHTML += slider.innerHTML;
+
+// Smooth scroll by pixel
+function autoScroll() {
+  slider.scrollBy({ left: 2, behavior: "smooth" });
+
+  // When we reach the halfway point, reset instantly (no animation)
+  if (slider.scrollLeft >= slider.scrollWidth / 2) {
+    slider.scrollTo({ left: 0, behavior: "auto" });
+  }
+}
+
+let scrollInterval = setInterval(autoScroll, 10); // Adjust speed here
+
+// Pause on hover
+slider.addEventListener("mouseover", () => clearInterval(scrollInterval));
+slider.addEventListener("mouseout", () => {
+  scrollInterval = setInterval(autoScroll, 10);
+});
+</script>
+
+    </body>
+</html>

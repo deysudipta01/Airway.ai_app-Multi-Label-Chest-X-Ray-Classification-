@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <!--Page Title-->
+    <title>Register</title>
+
+    <!--Meta Keywords and Description-->
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+
+    <!--Favicon-->
+
+
+    <!--=============== REMIX ICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Main CSS Files -->
+    <link rel="stylesheet" href="static/css/style1.css">
+    <link rel="stylesheet" href="static/css/register.css">
+
+    <!-- Namari Color CSS -->
+    <link rel="stylesheet" href="static/css/namari-color.css">
+
+    <!--Icon Fonts - Font Awesome Icons-->
+    <link rel="stylesheet" href="static/css/font-awesome.min.css">
+
+    <!-- Animate CSS-->
+    <link href="static/css/animate.css" rel="stylesheet" type="text/css">
+
+    <!--Google Webfonts-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+
+
+
+
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status" class="la-ball-triangle-path">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<!--End of Preloader-->
+
+<div class="page-border" data-wow-duration="0.7s" data-wow-delay="0.2s">
+    <div class="top-border wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;"></div>
+    <div class="right-border wow fadeInRight animated" style="visibility: visible; animation-name: fadeInRight;"></div>
+    <div class="bottom-border wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;"></div>
+    <div class="left-border wow fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;"></div>
+</div>
+
+<div id="wrapper">
+
+    <header id="banner" class="scrollto clearfix" data-enllax-ratio=".5">
+        <div id="header" class="nav-collapse">
+            <div class="row clearfix">
+                <div class="col-1">
+
+                    <!--Logo-->
+                    <div id="logo">
+
+                        <!--Logo that is shown on the banner-->
+                        <img src="static/img/logo.png" id="banner-logo" alt="Landing Page"/>
+                        <!--End of Banner Logo-->
+
+                        <!--The Logo that is shown on the sticky Navigation Bar-->
+                        <img src="static/images/logo-2.png" id="navigation-logo" alt="Landing Page"/>
+                        <!--End of Navigation Logo-->
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div><!--End of Header-->
+
+
+
+
+    </header>
+</div>
+
+
+    <div class="page">
+
+      <!-- Preloader -->
+
+      <div class="div">
+            <div class="desc">
+              <div class="text-wrapper">OTP Verification</div>
+              <p class="p">Enter name, email and phone number to send one time Password</p>
+            </div>
+
+
+
+            <div class="content">
+              <form method="POST" class="register-form" id="register-form" >
+                  <div class="input-field name-field">
+                    <label for="name" class="label">Name</label>
+                    <input type="text" name="fullname" id="name" class="input-text" placeholder="John Doe" />
+                    <img class="subtract" src="static/img/register-images/subtract-1.svg" />
+                  </div>
+                  <div class="input-field email-field">
+                    <label for="email" class="label">Email</label>
+                    <input type="email" name="email" id="email" class="input-text" placeholder="dscode@gmail.com" />
+                    <img class="subtract" src="static/img/register-images/subtract-1.svg" />
+                  </div>
+                  <div class="input-field password">
+                    <label for="Password" class="label">Password</label>
+                    <input type="password"  name="password" id="Password" class="input-text" placeholder="Sudipta@3434" />
+                    <img class="subtract" src="static/img/register-images/subtract-1.svg" />
+                  </div>
+                  <div class="input-field repassword">
+                    <label for="repassword" class="label">Repassword</label>
+                    <input type="password" name="re_pass" id="repassword" class="input-text" placeholder="Sudipta@3434" />
+                    <img class="subtract" src="static/img/register-images/subtract-1.svg" />
+                  </div>
+
+                  <div class="input-field phone-field">
+                    <label for="phone" class="label">Phone Number</label>
+                    <input type="tel"  name="phone" id="phone" class="input-text" placeholder="+44 999999999" />
+                    <img class="subtract" src="static/img/register-images/subtract.svg" />
+                  </div>
+
+
+
+                  <img class="image" src="static/img/register-images/image@1.5x.png" />
+                  <button class="continue-button" id="register-btn"  type="submit" >Submit</button>
+
+              </form>
+            </div>
+      </div>
+
+    </div>
+
+
+
+
+<!-- Include JavaScript resources -->
+<script src="static/js/jquery.1.8.3.min.js"></script>
+
+<script src="static/js/site.js"></script>
+
+
+<script>
+  document.getElementById("register-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // ✅ Show animated preloader using jQuery
+    $("#status").fadeIn();
+    $("#preloader").fadeIn();
+    $("body").css({ "overflow-y": "hidden" });
+
+    const fullname = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const password = document.getElementById("Password").value;
+    const re_pass = document.getElementById("repassword").value;
+
+    if (password !== re_pass) {
+        alert("Passwords do not match!");
+
+        // ❌ Hide preloader with fade
+        $("#status").fadeOut();
+        $("#preloader").delay(350).fadeOut("slow");
+        $("body").delay(350).css({ "overflow-y": "visible" });
+        return;
+    }
+
+    fetch("/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ fullname, email, phone, password, re_pass })
+    })
+    .then(res => res.json())
+    .then(data => {
+        // ❌ Hide preloader with fade
+        $("#status").fadeOut();
+        $("#preloader").delay(350).fadeOut("slow");
+        $("body").delay(350).css({ "overflow-y": "visible" });
+
+        if (data.status === "success") {
+            document.getElementById("register-form").reset();
+            window.location.href = "/otp_verification";
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch(err => {
+        // ❌ Hide preloader with fade
+        $("#status").fadeOut();
+        $("#preloader").delay(350).fadeOut("slow");
+        $("body").delay(350).css({ "overflow-y": "visible" });
+
+        alert("Something went wrong!");
+        console.error(err);
+    });
+});
+
+</script>
+<script>
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("register-form");
+    if (form) form.reset();
+  });
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

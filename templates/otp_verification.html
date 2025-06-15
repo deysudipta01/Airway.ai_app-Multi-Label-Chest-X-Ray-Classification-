@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/globals.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/cod_confirmation.css') }}">
+  </head>
+  <body>
+    <div class="varify">
+      <div class="div">
+        <div class="text-wrapper">Verification Code</div>
+        <p class="p">We have sent the verification code to your email address</p>
+
+
+        <form id="otp-form" method="POST">
+          <div class="code-inputs">
+            <input type="text" maxlength="1" class="code-box" required />
+            <input type="text" maxlength="1" class="code-box" required />
+            <input type="text" maxlength="1" class="code-box" required />
+            <input type="text" maxlength="1" class="code-box" required />
+            <input type="text" maxlength="1" class="code-box" required />
+            <input type="text" maxlength="1" class="code-box" required />
+          </div>
+
+          <!-- Hidden submit for Enter key -->
+          <button type="submit" style="display: none;"></button>
+
+          <div class="group" onclick="submitForm()">
+            <div class="overlap-group-2">
+              <div class="text-wrapper-4">Submit</div>
+            </div>
+          </div>
+          <div class="timer-container" style="text-align:center; margin-top: 90px;">
+            <p id="timer" style="font-size: 16px; color: #555;">Resend OTP in 05:00</p>
+            <button id="resend-btn" onclick="resendOTP()" disabled style="padding: 8px 16px; font-weight: bold; cursor: not-allowed;">Resend OTP</button>
+          </div>
+        </form>
+
+
+
+
+
+
+      </div>
+    </div>
+<style>
+  @media (max-width: 768px) {
+    .code-inputs {
+        margin: 45px;
+        margin-top: 20rem;
+
+    }
+}
+</style>
+<script>
+  // Automatically move to next input
+  document.querySelectorAll('.code-box').forEach((input, index, inputs) => {
+    input.addEventListener('input', () => {
+      if (input.value.length === 1 && index < inputs.length - 1) {
+        inputs[index + 1].focus();
+      }
+    });
+  });
+
+  // Submit OTP on form submission (Enter key or manual)
+  document.getElementById("otp-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    submitForm(); // 👈 Call the same function
+  });
+
+  function submitForm() {
+    const otpInputs = document.querySelectorAll(".code-box");
+    let otp = "";
+    otpInputs.forEach(input => {
+      otp += input.value;
+    });
+
+    fetch("/verify_otp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ otp: otp })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === "success") {
+        window.location.href = data.redirect_url;
+      } else {
+        alert(data.message);
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      alert("Something went wrong.");
+    });
+  }
+</script>
+<script>
+  let resendTimer;
+  let countdown = 300; // 5 minutes in seconds
+
+  function startTimer() {
+    const timerDisplay = document.getElementById("timer");
+    const resendBtn = document.getElementById("resend-btn");
+
+    resendTimer = setInterval(() => {
+      const minutes = String(Math.floor(countdown / 60)).padStart(2, "0");
+      const seconds = String(countdown % 60).padStart(2, "0");
+
+      timerDisplay.textContent = `Resend OTP in ${minutes}:${seconds}`;
+      countdown--;
+
+      if (countdown < 0) {
+        clearInterval(resendTimer);
+        timerDisplay.textContent = "Didn't receive the code?";
+        resendBtn.disabled = false;
+        resendBtn.style.cursor = "pointer";
+      }
+    }, 1000);
+  }
+
+  startTimer(); // 🔁 Start the countdown on page load
+
+  function resendOTP() {
+    const resendBtn = document.getElementById("resend-btn");
+    resendBtn.disabled = true;
+    resendBtn.style.cursor = "not-allowed";
+    countdown = 300; // Reset the timer to 5 minutes
+    startTimer();
+
+    // Call backend to resend OTP
+    fetch("/resend_otp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === "success") {
+        alert("A new OTP has been sent to your email.");
+      } else {
+        alert(data.message || "Failed to resend OTP.");
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      alert("Error resending OTP.");
+    });
+  }
+</script>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,506 @@
+/* General Styles */
+body {
+    background-color: white; /* Light Gray Background */
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif; /* Modern Font */
+    margin: 0;
+    padding: 0;
+    color: #333; /* Dark Text for Contrast */
+}
+
+#wrapper {
+    display: flex;
+    width: 100%;
+}
+
+/* Sidebar */
+#sidebar-wrapper {
+    min-width: 250px;
+    max-width: 250px;
+    height: 100vh;
+    background-color: #343a40;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    padding: 20px;
+}
+
+/* Sidebar Styling */
+.sidebar-heading {
+    padding: 20px;
+    font-size: 1.2rem;
+    background-color: #212529;
+    color: #fff;
+}
+
+.list-group-item {
+    padding: 15px;
+    cursor: pointer;
+}
+
+#menu-toggle {
+    margin-bottom: 10px;
+}
+
+.order-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+        width: fit-content;
+    background-color: aliceblue;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    transition: transform 0.2s;
+}
+
+.order-card:hover {
+    transform: translateY(-5px);
+}
+
+
+
+
+.order-header {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.order-details p {
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.item-list {
+    list-style-type: none;
+    padding-left: 0;
+    font-size: 13px;
+}
+
+.item-list li {
+    margin-bottom: 4px;
+}
+
+.order-actions button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.text-success {
+    color: #28a745;
+}
+
+.text-warning {
+    color: #ffc107;
+}
+
+.container {
+
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.box1, .box2 {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    width: 48%; /* Optional to adjust width */
+}
+
+
+
+/* Product Management Section Styles */
+#product-sections {
+    width: 199rem !important;
+    height: 100vh !important;
+
+    background-color: white;
+    overflow-y: visible!important;
+    padding: 20px;
+}
+
+/* Form Styling */
+#product-form {
+    background: white;
+    width: 90rem;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Input and Textarea Styling */
+#product-form input,
+#product-form textarea {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* Button Styling */
+#submit-btn {
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 8px 16px;
+}
+
+/* Product List Container */
+#product-container {
+    margin-top: 20px;
+
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* Product Card */
+.product-card {
+    background-color: #E7F6FB;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 11rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Card Image */
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Card Body */
+.product-card .card-body {
+    padding: 15px;
+}
+
+/* Card Title */
+.product-card h5 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+/* Card Description */
+.product-card p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+/* Action Buttons */
+.product-card button {
+    margin-top: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    color: black;
+    background-color: #42DDA9;
+
+}
+
+/* Delete Button */
+.product-card button.btn-danger {
+    background-color: #F2B55A;
+    color: white;
+    border: none;
+}
+
+.product-card button.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Hide Product List Initially */
+#product-container.hidden {
+    display: none;
+}
+
+/* Card Container */
+.card-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Card Styles */
+.card {
+    background-color: #fff;
+    padding: 20px;
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Card Heading */
+.card h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #444;
+}
+
+/* Card Number */
+.card p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #28a745;
+}
+
+
+/* General Styling */
+#product2-sections {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: white;
+    padding: 20px;
+    }
+
+/* Heading Styles */
+h2 {
+    font-size: 24px;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Product Form Styling */
+#product2-form {
+    background: white;
+    width: 90rem;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Fields */
+#product2-form .form-control {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Form Input Focus Effect */
+#product2-form .form-control:focus {
+    border-color: #5e971a;
+    box-shadow: 0 0 8px rgba(94, 151, 26, 0.3);
+}
+
+/* Submit Button */
+#submit-btn2 {
+    background-color: #5e971a;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+#submit-btn2:hover {
+    background-color: #4a7f14;
+    cursor: pointer;
+}
+
+/* Product List Container */
+#product2-container {
+    margin-top: 20px;
+
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* Product Card */
+.product2-card {
+    background-color: #E7F6FB;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    width:20rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Hover Effect on Product Card */
+.product2-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Product Image */
+.product2-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+/* Product Info */
+.product2-info {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Price & Description */
+.product2-card p {
+    margin: 5px 0;
+    color: #555;
+    font-size: 14px;
+}
+
+/* Edit and Delete Button Styles */
+.product2-card button {
+    margin-top: 10px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product2-card button:first-child {
+    background-color: #ffc107;
+    color: #333;
+}
+
+.product2-card button:first-child:hover {
+    background-color: #e0a800;
+}
+
+.product2-card button:last-child {
+    background-color: #dc3545;
+    color: white;
+}
+
+.product2-card button:last-child:hover {
+    background-color: #c82333;
+}
+.dots-container span {
+    font-size: 18px;
+}
+.dot {
+        cursor: pointer;
+        font-size: 18px;
+        margin: 0 2px;
+        user-select: none;
+    }
+
+#image-preview img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #product2-sections {
+        padding: 15px;
+    }
+
+    #product2-container {
+        grid-template-columns: 1fr;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    #submit-btn2 {
+        width: 100%;
+    }
+}
+
+.avatar-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    .bg-light-pink {
+      background-color: #ffe6e6;
+      color: #ff4d4d;
+    }
+    .bg-light-green {
+      background-color: #e6ffee;
+      color: #33cc66;
+    }
+
+
+  .modal-header {
+    background-color: #f7f7f7;
+  }
+
+  .modal-body {
+    font-family: 'Roboto', sans-serif;
+    color: #555;
+  }
+
+  h5 {
+    color: #333;
+    font-weight: 600;
+  }
+
+  .table th {
+    background-color: #f1f1f1;
+    text-align: center;
+  }
+
+  .table td {
+    text-align: center;
+  }
+
+  .table-bordered th, .table-bordered td {
+    border: 1px solid #ddd;
+  }
+
+  .modal-body p {
+    margin: 5px 0;
+  }
+
+  .row {
+    margin-bottom: 20px;
+  }
+
+  .modal-dialog {
+    max-width: 900px;
+  }
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .card {
+        width: 90%;
+    }
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>User login</title>
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="screen-1">
+      <h2 class="heading">Welcome login!</h2>
+
+    <form id="login-form" action="/login" method="POST">
+      <!-- Email and Password Fields Here -->
+        <div class="email">
+        <label for="phone">phone</label>
+        <div class="sec-2">
+          <ion-icon name="mail-outline"></ion-icon>
+          <input type="tel" id="phone" name="phone" placeholder="10 digit no" required/>
+        </div>
+
+      </div>
+        <div class="password">
+        <label for="password">Password</label>
+        <div class="sec-2">
+          <ion-icon name="lock-closed-outline"></ion-icon>
+          <input class="pas" type="password" id="password" name="password" placeholder="#John123" required/>
+          <ion-icon class="show-hide" onclick="togglePassword()" name="eye-outline"></ion-icon>
+        </div>
+      </div>
+
+      </form>
+
+        <button class="login" type="button" onclick="submitForm()">Login</button>
+        <style>
+          @keyframes shiver {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-2px); }
+            50% { transform: translateX(2px); }
+            75% { transform: translateX(-2px); }
+            100% { transform: translateX(0); }
+          }
+
+          .shiver-effect {
+            animation: shiver 0.3s ease-in-out;
+          }
+        </style>
+
+        <script>
+            function submitForm() {
+                document.getElementById('login-form').submit();
+            }
+            function togglePassword() {
+              const passwordInput = document.getElementById("password");
+              const icon = document.querySelector(".show-hide");
+
+              if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.setAttribute("name", "eye-off-outline");
+              } else {
+                passwordInput.type = "password";
+                icon.setAttribute("name", "eye-outline");
+              }
+            }
+
+            document.getElementById("password").addEventListener("input", () => {
+              const lockIcon = document.querySelector("ion-icon[name='lock-closed-outline']");
+              lockIcon.classList.add("shiver-effect");
+
+              // Remove the class after the animation finishes so it can re-trigger
+              setTimeout(() => {
+                lockIcon.classList.remove("shiver-effect");
+              }, 300); // must match animation duration
+            });
+        </script>
+
+        <div class="footer">
+          <span onclick="window.location.href='/register'">Signup</span>
+          <span  onclick="window.location.href='/'">return to home</span>
+        </div>
+
+
+
+
+</div>
+<!-- partial -->
+
+</body>
+</html>
