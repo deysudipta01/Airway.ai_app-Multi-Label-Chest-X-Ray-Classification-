@@ -5,10 +5,12 @@ dnspython
 werkzeug
 Pillow
 numpy
-opencv-python
+
 tensorflow
 fpdf
 python-dotenv
 email-validator
 gunicorn
 setuptools
+
+
