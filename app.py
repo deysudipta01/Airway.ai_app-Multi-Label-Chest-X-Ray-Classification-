@@ -1,35 +1,29 @@
-
 from email.mime.multipart import MIMEMultipart
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session, send_from_directory
 from flask_pymongo import PyMongo
 
 from functools import wraps
-import razorpay
+
 import smtplib
 from email.mime.text import MIMEText
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 from flask import Flask, render_template, request, redirect, url_for, session
-from PIL import Image
+
 import numpy as np
 import cv2
 import tensorflow as tf
 from tensorflow.keras.models import load_model
-import os
+
 from fpdf import FPDF
 from flask import send_file, session, redirect, url_for
-from datetime import datetime
-from io import BytesIO
+
 import random
 import string
 from dotenv import load_dotenv
 import os
 import datetime
 from datetime import datetime, time
-
-
-from dotenv import load_dotenv
-import os
 
 
 
