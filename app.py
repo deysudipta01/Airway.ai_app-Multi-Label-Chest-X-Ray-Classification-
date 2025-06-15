@@ -27,12 +27,12 @@ import os
 import datetime
 from datetime import datetime, time
 
-<<<<<<< HEAD
+
 from dotenv import load_dotenv
 import os
 
-=======
->>>>>>> a98af2b (first commit)
+
+
 load_dotenv()
 
 
@@ -522,7 +522,7 @@ def index2():
 # ✅ Prediction page
 
 # Load model
-MODEL_PATH = "DenseNet169 -17_val_loss.keras"
+MODEL_PATH = "model.keras"
 model = load_model(MODEL_PATH)
 
 
