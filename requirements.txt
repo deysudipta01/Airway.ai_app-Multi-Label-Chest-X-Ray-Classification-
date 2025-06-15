@@ -5,7 +5,7 @@ dnspython
 werkzeug
 Pillow
 numpy
-
+flask_pymongo
 tensorflow
 fpdf
 python-dotenv
